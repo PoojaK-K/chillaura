@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Chillaura 💜</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background: linear-gradient(-45deg, #e6c7ff, #cfe9ff, #f3d9ff, #bde9ff);
+            background-size: 400% 400%;
+            animation: bgMove 15s ease infinite;
+        }
+        
+        @keyframes bgMove {
+            0% {
+                background-position: 0% 50%
+            }
+            50% {
+                background-position: 100% 50%
+            }
+            100% {
+                background-position: 0% 50%
+            }
+        }
+        
+        .container {
+            width: 380px;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(18px);
+            padding: 30px;
+            border-radius: 26px;
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.18);
+            text-align: center;
+        }
+        /* INPUT SECTION */
+        
+        #inputBox {
+            transition: 0.5s;
+        }
+        
+        h1 {
+            color: #5a2a82;
+        }
+        
+        .tagline {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        
+        input,
+        select {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 14px;
+            outline: none;
+        }
+        
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 16px;
+            background: linear-gradient(to right, #c084fc, #60a5fa);
+            color: white;
+            font-size: 15px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        /* RESPONSE BOX */
+        
+        #responseBox {
+            display: none;
+            margin-top: 10px;
+            background: rgba(255, 255, 255, 0.45);
+            padding: 22px;
+            border-radius: 22px;
+            animation: fadeUp .8s ease;
+            line-height: 1.8;
+            color: #4a235a;
+        }
+        
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px)
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+        /* AFFIRMATION HISTORY */
+        
+        .history {
+            margin-top: 18px;
+            text-align: left;
+        }
+        
+        .history h3 {
+            font-size: 14px;
+            color: #5a2a82;
+            margin-bottom: 6px;
+        }
+        
+        .history div {
+            background: rgba(255, 255, 255, 0.4);
+            padding: 10px;
+            border-radius: 12px;
+            font-size: 13px;
+            margin-bottom: 6px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- INPUT BOX -->
+        <div id="inputBox">
+            <h1>Chillaura 💜</h1>
+            <p class="tagline">Your calm space. Your vibe partner.</p>
+
+            <input id="partner" placeholder="Name your vibe partner ✨">
+
+            <select id="mood">
+      <option value="">How are you feeling today?</option>
+      <option value="happy">Happy 🌸</option>
+      <option value="sad">Sad 🌧️</option>
+      <option value="angry">Angry 🔥</option>
+      <option value="tired">Tired 🌙</option>
+      <option value="calm">Calm 🌿</option>
+    </select>
+
+            <button onclick="shareMood()">Share</button>
+        </div>
+
+        <!-- RESPONSE BOX -->
+        <div id="responseBox"></div>
+
+        <!-- AFFIRMATION HISTORY -->
+        <div class="history">
+            <h3>🌼 Daily Affirmation History</h3>
+            <div id="affirmationHistory"></div>
+        </div>
+
+    </div>
+
+    <script>
+        const affirmations = [
+            "I am allowed to move at my own pace 🌷",
+            "Even surviving today is enough 🤍",
+            "My feelings are valid and heard 🌙",
+            "I deserve peace without guilt 💫",
+            "Soft days are still strong days 🌸"
+        ];
+
+        function shareMood() {
+            const mood = document.getElementById("mood").value;
+            const name = document.getElementById("partner").value || "Chillaura";
+            const inputBox = document.getElementById("inputBox");
+            const responseBox = document.getElementById("responseBox");
+
+            let msg = "";
+
+            if (mood === "happy") {
+                msg = `🌸 Hey… this happiness suits you so beautifully 💖  
+    Let this joy sit with you a little longer.  
+    You worked through so much to reach moments like this.  
+    I’m really proud of you 🫶✨`;
+            } else if (mood === "sad") {
+                msg = `🤍 Come here… you don’t need to fix anything today.  
+    Some days are only meant to be felt, not solved.  
+    You’re safe to rest here. I’m with you 🫂`;
+            } else if (mood === "angry") {
+                msg = `🔥 Pause with me.  
+    Breathe slowly.  
+    This feeling won’t stay forever — calm will return 💙`;
+            } else if (mood === "tired") {
+                msg = `🌙 You’ve done enough for today.  
+    Rest without guilt.  
+    Tomorrow can wait 🤍`;
+            } else if (mood === "calm") {
+                msg = `🌿 Stay in this quiet moment.  
+    No rush. No noise.  
+    Just peace ✨`;
+            } else {
+                msg = "Tell me how you feel 🤍";
+            }
+
+            // 🔥 MAGIC PART
+            inputBox.style.display = "none"; // INPUT DISAPPEARS
+            responseBox.style.display = "block"; // NEW BOX APPEARS
+
+            responseBox.innerHTML = `
+    <strong>${name} says:</strong><br><br>${msg}
+  `;
+
+            saveAffirmation();
+        }
+
+        function saveAffirmation() {
+            const today = new Date().toDateString();
+            const text = affirmations[Math.floor(Math.random() * affirmations.length)];
+            let history = JSON.parse(localStorage.getItem("affirmations")) || [];
+            history.unshift(`${today} — ${text}`);
+            localStorage.setItem("affirmations", JSON.stringify(history.slice(0, 7)));
+            loadAffirmations();
+        }
+
+        function loadAffirmations() {
+            const container = document.getElementById("affirmationHistory");
+            const history = JSON.parse(localStorage.getItem("affirmations")) || [];
+            container.innerHTML = "";
+            history.forEach(a => {
+                const div = document.createElement("div");
+                div.innerText = a;
+                container.appendChild(div);
+            });
+        }
+
+        loadAffirmations();
+    </script>
+
+</body>
+
+</html>
