@@ -69,65 +69,9 @@ Each mood displays a unique encouraging message to help users feel supported and
 
 ---
 
-## 📂 Project Structure
+## 🔗 Visit site
 
-```text
-Chillaura/
-│
-├── index.html
-├── README.md
-└── assets/
-```
+ https://poojak-k.github.io/chillaura/
 
----
-
-## 🚀 Getting Started
-
-### Clone the Repository
-
-```bash
-git clone https://github.com/PoojaK-K/Chillaura.git
-```
-
-### Navigate to the Project
-
-```bash
-cd Chillaura
-```
-
-### Run the Project
-
-Simply open **index.html** in your preferred web browser.
-
-No installation or external dependencies are required.
-
----
-
-## 📖 Application Workflow
-
-```text
-Open Application
-        │
-        ▼
-Enter Companion Name
-        │
-        ▼
-Choose Current Mood
-        │
-        ▼
-Click Share
-        │
-        ▼
-Receive Personalized Comfort Message
-        │
-        ▼
-Random Daily Affirmation Generated
-        │
-        ▼
-Affirmation Saved to Local Storage
-        │
-        ▼
-View Recent Affirmation History
-```
 
 ---
